@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="aiBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#040b17"/>
+      <stop offset="60%" stop-color="#091b33"/>
+      <stop offset="100%" stop-color="#0e2a4a"/>
+    </linearGradient>
+    <linearGradient id="coreGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="50%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#ec4899"/>
+    </linearGradient>
+    <radialGradient id="neuralRadial" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3"/>
+      <stop offset="60%" stop-color="#818cf8" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="aiGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="360" fill="url(#aiBg)"/>
+
+  <!-- Radial Glow Behind Neural Core -->
+  <circle cx="320" cy="170" r="190" fill="url(#neuralRadial)"/>
+
+  <!-- Geometric Neural Coordinate Rings -->
+  <circle cx="320" cy="170" r="140" fill="none" stroke="#38bdf8" stroke-width="1" stroke-dasharray="4,8" opacity="0.3"/>
+  <circle cx="320" cy="170" r="110" fill="none" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="12,6" opacity="0.4"/>
+  <circle cx="320" cy="170" r="80" fill="none" stroke="#60a5fa" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Synaptic Connection Mesh -->
+  <g stroke="#38bdf8" stroke-width="1.2" opacity="0.6">
+    <!-- Center to Left Layer -->
+    <line x1="320" y1="170" x2="190" y2="110"/>
+    <line x1="320" y1="170" x2="180" y2="170"/>
+    <line x1="320" y1="170" x2="190" y2="230"/>
+
+    <!-- Left to Outer Left -->
+    <line x1="190" y1="110" x2="80" y2="80"/>
+    <line x1="190" y1="110" x2="90" y2="150"/>
+    <line x1="180" y1="170" x2="90" y2="150"/>
+    <line x1="180" y1="170" x2="80" y2="220"/>
+    <line x1="190" y1="230" x2="80" y2="220"/>
+    <line x1="190" y1="230" x2="100" y2="280"/>
+
+    <!-- Center to Right Layer -->
+    <line x1="320" y1="170" x2="450" y2="110"/>
+    <line x1="320" y1="170" x2="460" y2="170"/>
+    <line x1="320" y1="170" x2="450" y2="230"/>
+
+    <!-- Right to Outer Right -->
+    <line x1="450" y1="110" x2="560" y2="80"/>
+    <line x1="450" y1="110" x2="550" y2="150"/>
+    <line x1="460" y1="170" x2="550" y2="150"/>
+    <line x1="460" y1="170" x2="560" y2="220"/>
+    <line x1="450" y1="230" x2="560" y2="220"/>
+    <line x1="450" y1="230" x2="540" y2="280"/>
+
+    <!-- Top & Bottom Connections -->
+    <line x1="320" y1="170" x2="320" y2="70"/>
+    <line x1="320" y1="170" x2="320" y2="270"/>
+    <line x1="320" y1="70" x2="250" y2="40"/>
+    <line x1="320" y1="70" x2="390" y2="40"/>
+    <line x1="320" y1="270" x2="250" y2="300"/>
+    <line x1="320" y1="270" x2="390" y2="300"/>
+  </g>
+
+  <!-- Neural Nodes (Outer) -->
+  <g fill="#0e2a4a" stroke="#38bdf8" stroke-width="2">
+    <circle cx="80" cy="80" r="7"/>
+    <circle cx="90" cy="150" r="8"/>
+    <circle cx="80" cy="220" r="7"/>
+    <circle cx="100" cy="280" r="6"/>
+
+    <circle cx="560" cy="80" r="7"/>
+    <circle cx="550" cy="150" r="8"/>
+    <circle cx="560" cy="220" r="7"/>
+    <circle cx="540" cy="280" r="6"/>
+
+    <circle cx="250" cy="40" r="6"/>
+    <circle cx="390" cy="40" r="6"/>
+    <circle cx="250" cy="300" r="6"/>
+    <circle cx="390" cy="300" r="6"/>
+  </g>
+
+  <!-- Neural Nodes (Intermediate) -->
+  <g fill="#1e1b4b" stroke="#a78bfa" stroke-width="2" filter="url(#aiGlow)">
+    <circle cx="190" cy="110" r="9"/>
+    <circle cx="180" cy="170" r="11"/>
+    <circle cx="190" cy="230" r="9"/>
+
+    <circle cx="450" cy="110" r="9"/>
+    <circle cx="460" cy="170" r="11"/>
+    <circle cx="450" cy="230" r="9"/>
+
+    <circle cx="320" cy="70" r="8"/>
+    <circle cx="320" cy="270" r="8"/>
+  </g>
+
+  <!-- Central Artificial Intelligence Core -->
+  <g transform="translate(320, 170)" filter="url(#aiGlow)">
+    <!-- Rotating Octagon Frame -->
+    <polygon points="0,-45 32,-32 45,0 32,32 0,45 -32,32 -45,0 -32,-32" fill="#0b172a" stroke="url(#coreGlow)" stroke-width="3"/>
+    
+    <!-- Inner Diamond -->
+    <polygon points="0,-26 26,0 0,26 -26,0" fill="#1e1b4b" stroke="#38bdf8" stroke-width="2"/>
+    
+    <!-- Core Eye / Pulse -->
+    <circle cx="0" cy="0" r="12" fill="url(#coreGlow)"/>
+    <circle cx="0" cy="0" r="5" fill="#ffffff"/>
+  </g>
+
+  <!-- Binary Data Accents -->
+  <g font-family="'JetBrains Mono', monospace" font-size="9" fill="#38bdf8" opacity="0.4">
+    <text x="50" y="40">01001100 01001100 01001101</text>
+    <text x="470" y="40">TENSOR_CORE::INIT</text>
+    <text x="50" y="330">WEIGHTS: 0.9824 // ADAM</text>
+    <text x="480" y="330">EMBEDDING_DIM = 4096</text>
+  </g>
+
+  <!-- Label Bottom -->
+  <g transform="translate(320, 315)" text-anchor="middle">
+    <text font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" letter-spacing="3" fill="#38bdf8">
+      INTELLIGENCE ARTIFICIELLE &amp; LLMS · VEILLE TECH
+    </text>
+  </g>
+</svg>
+

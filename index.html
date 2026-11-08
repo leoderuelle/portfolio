@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Léo Deruelle · Portfolio XMB</title>
+  <meta name="description"
+    content="Portfolio de Léo Deruelle — Développement logiciel · Nouvelles technologies · Full-stack">
+
+  <!-- Polices Google : Outfit (Titres & Horloge) + JetBrains Mono (Code, Dates, Sous-titres) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@200;300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body data-theme="blue">
+
+  <!-- ═══════════════ ARRIÈRE-PLAN ANIMÉ (PS3 WAVES & PARTICULES) ═══════════════ -->
+  <div class="xmb-bg" aria-hidden="true">
+    <div id="particles" class="particles">
+      <!-- Particules statiques initiales fidèles au mockup (complétées dynamiquement par JS) -->
+      <div class="particle" style="top: 486px; left: 172px; --dur: 8s; --delay: 0s; --dx: 15px; --dy: -20px;"></div>
+      <div class="particle" style="top: 243px; left: 388px; --dur: 11s; --delay: 1.5s; --dx: -20px; --dy: 15px;"></div>
+      <div class="particle" style="top: 632px; left: 633px; --dur: 9s; --delay: 0.8s; --dx: 25px; --dy: -10px;"></div>
+      <div class="particle" style="top: 421px; left: 878px; --dur: 13s; --delay: 2s; --dx: -15px; --dy: -25px;"></div>
+      <div class="particle" style="top: 567px; left: 1123px; --dur: 10s; --delay: 3s; --dx: 20px; --dy: 20px;"></div>
+      <div class="particle" style="top: 283px; left: 1296px; --dur: 12s; --delay: 1s; --dx: -18px; --dy: -12px;"></div>
+    </div>
+
+    <!-- Onde supérieure soyeuse -->
+    <svg class="wave wave--1" viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <path d="M0 150Q150 40 300 150T600 150T900 150T1200 150V300H0Z" fill="rgba(120,190,255,.10)"
+        stroke="rgba(190,225,255,.5)" stroke-width="2.5" />
+    </svg>
+
+    <!-- Onde inférieure profonde -->
+    <svg class="wave wave--2" viewBox="0 0 1200 300" preserveAspectRatio="none">
+      <path d="M0 150Q150 260 300 150T600 150T900 150T1200 150V300H0Z" fill="rgba(60,140,230,.14)"
+        stroke="rgba(150,205,255,.4)" stroke-width="3" />
+    </svg>
+  </div>
+
+  <!-- ═══════════════ BARRE SUPÉRIEURE (TOP BAR) ═══════════════ -->
+  <header class="topbar">
+    <div class="topbar__left">
+      <div class="topbar__avatar" aria-label="Avatar utilisateur">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+          <path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8" />
+        </svg>
+        <span class="topbar__dot" title="En ligne"></span>
+      </div>
+      <span class="topbar__user">LÉO_D</span>
+      <span class="topbar__separator">·</span>
+      <span class="topbar__status">EN LIGNE</span>
+    </div>
+
+    <div class="topbar__right">
+      <div class="topbar__clock-wrap">
+        <time id="clock" class="topbar__clock" aria-live="polite">12:55:37</time>
+      </div>
+      <div class="topbar__date-wrap">
+        <span id="date" class="topbar__date">samedi 7 novembre 2026</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════ INTERFACE XMB PRINCIPALE ═══════════════ -->
+  <main class="xmb" role="application" aria-label="Menu PlayStation 3 XMB">
+
+    <!-- Ligne de guidage horizontale XMB -->
+    <div class="xmb__rail" aria-hidden="true"></div>
+
+    <!-- Axe vertical d'ancrage -->
+    <div class="xmb__axis" id="xmbAxis">
+
+      <!-- Rangée horizontale des catégories -->
+      <nav class="xmb__categories" id="categories" aria-label="Catégories principales">
+
+        <!-- 0 · Utilisateur -->
+        <div class="xmb__category" data-index="0" role="menuitem" aria-label="Utilisateur" tabindex="0">
+          <div class="xmb__icon-wrap">
+            <svg class="xmb__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <path d="M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8" />
+            </svg>
+          </div>
+          <span class="xmb__cat-label">Utilisateur</span>
+        </div>
+
+        <!-- 1 · Jeux & Projets -->
+        <div class="xmb__category" data-index="1" role="menuitem" aria-label="Jeux & Projets" tabindex="-1">
+          <div class="xmb__icon-wrap">
+            <svg class="xmb__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </div>
+          <span class="xmb__cat-label">Jeux &amp; Projets</span>
+        </div>
+
+        <!-- 2 · Paramètres Système -->
+        <div class="xmb__category" data-index="2" role="menuitem" aria-label="Paramètres Système" tabindex="-1">
+          <div class="xmb__icon-wrap">
+            <svg class="xmb__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6" />
+            </svg>
+          </div>
+          <span class="xmb__cat-label">Paramètres Système</span>
+        </div>
+
+        <!-- 3 · Trophées -->
+        <div class="xmb__category" data-index="3" role="menuitem" aria-label="Trophées" tabindex="-1">
+          <div class="xmb__icon-wrap">
+            <svg class="xmb__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z" />
+              <path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3" />
+            </svg>
+          </div>
+          <span class="xmb__cat-label">Trophées</span>
+        </div>
+
+        <!-- 4 · Passions -->
+        <div class="xmb__category" data-index="4" role="menuitem" aria-label="Passions" tabindex="-1">
+          <div class="xmb__icon-wrap">
+            <svg class="xmb__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </div>
+          <span class="xmb__cat-label">Passions</span>
+        </div>
+
+        <!-- 5 · Réseau -->
+        <div class="xmb__category" data-index="5" role="menuitem" aria-label="Réseau" tabindex="-1">
+          <div class="xmb__icon-wrap">
+            <svg class="xmb__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+            </svg>
+          </div>
+          <span class="xmb__cat-label">Réseau</span>
+        </div>
+      </nav>
+
+      <!-- Colonne verticale des sous-éléments (générée dynamiquement par app.js) -->
+      <div class="xmb__subitems-container">
+        <ul class="xmb__subitems" id="subitems" role="menu" aria-label="Sous-éléments de la catégorie"></ul>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════ PANNEAU LATÉRAL DE DÉTAILS (MEDIA INFO DIRECT) ═══════════════ -->
+    <aside class="xmb__sidepanel" id="sidePanel" aria-label="Informations détaillées">
+      <!-- Espace supérieur réservé : empêche le contenu de passer sur la date et l'horloge lors du scroll -->
+      <div class="sidepanel__top-spacer" aria-hidden="true"></div>
+
+      <!-- Zone défilable confinée sous la barre supérieure -->
+      <div class="sidepanel__scroll" id="sideScroll">
+        <div class="sidepanel__inner">
+          <div class="sidepanel__badge" id="sideBadge">MEDIA INFO · UTILISATEUR</div>
+
+          <!-- Carte média visuelle (illustrations / aperçus de projets & passions) -->
+          <div class="sidepanel__media-card" id="sideMediaCard" style="display: none;">
+            <img id="sideMediaImg" class="sidepanel__media-img" src="" alt="Aperçu visuel">
+            <div class="sidepanel__media-gloss"></div>
+          </div>
+
+          <h2 class="sidepanel__title" id="sideTitle">Profil Principal</h2>
+          <div class="sidepanel__subtitle" id="sideSubtitle">Développement logiciel · Nouvelles technologies ·
+            Full-stack</div>
+
+          <p class="sidepanel__desc" id="sideDesc">
+            Développeur passionné par le code propre, la conception logicielle et l'exploration des nouvelles
+            technologies. Je conçois des applications web, mobile et logicielles structurées, réactives et testées.
+          </p>
+
+          <div class="sidepanel__status" id="sideStatusBox">
+            <span class="sidepanel__status-label">STATUT :</span>
+            <span class="sidepanel__status-val" id="sideStatus">EN RECHERCHE DE STAGE (8 À 10 SEMAINES) · OUVERT AUX
+              PROJETS</span>
+          </div>
+
+          <div class="sidepanel__tags" id="sideTags">
+            <span class="sidepanel__tag">C++</span>
+            <span class="sidepanel__tag">Java</span>
+            <span class="sidepanel__tag">TypeScript</span>
+            <span class="sidepanel__tag">Full-stack</span>
+          </div>
+
+          <div class="sidepanel__footer" id="sideFooter" style="display: none;">
+            <div class="sidepanel__action-box" id="sideActionBox"></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- ═══════════════ MODALE DES FONCTIONNALITÉS DU SYSTÈME ═══════════════ -->
+  <div class="modal-overlay" id="featuresModal" role="dialog" aria-modal="true" aria-labelledby="featuresModalTitle"
+    style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-badge">CONSOLE SYSTÈME · DIAGNOSTIC EN DIRECT</div>
+        <button class="modal-close" id="btnFeaturesClose" aria-label="Fermer la console (Échap)">✕</button>
+      </div>
+
+      <h2 class="modal-title" id="featuresModalTitle">Fonctionnalités &amp; Architecture XMB</h2>
+      <p class="modal-subtitle">Exploration interactive des capacités techniques du portfolio</p>
+
+      <div class="features-content">
+        <!-- Module 1 : Synthèse Sonore Web Audio -->
+        <div class="feature-box">
+          <div class="feature-box__header">
+            <span class="feature-box__icon">🔊</span>
+            <div class="feature-box__title-group">
+              <h3>Synthèse Web Audio API Native</h3>
+              <p>Zéro fichier MP3 ou WAV externe · Oscillateurs sinusoïdaux générés en temps réel</p>
+            </div>
+          </div>
+          <div class="feature-box__body">
+            <button class="feature-btn" id="btnTestSound">
+              <span class="feature-btn__key">▶</span>
+              <span>Tester l'accord arpeggio PS3</span>
+            </button>
+            <span class="feature-box__note" id="soundTestStatus">Fréquences : 587.33 Hz (D5) &amp; 880 Hz (A5)</span>
+          </div>
+        </div>
+
+        <!-- Module 2 : Sélecteur de Thèmes XMB -->
+        <div class="feature-box">
+          <div class="feature-box__header">
+            <span class="feature-box__icon">🎨</span>
+            <div class="feature-box__title-group">
+              <h3>Thèmes Visuels Commutables</h3>
+              <p>Changement instantané de l'ambiance lumineuse et des gradients GPU</p>
+            </div>
+          </div>
+          <div class="feature-box__themes" id="modalThemeButtons">
+            <button class="theme-btn" data-theme-id="blue">Bleu Nuit PS3</button>
+            <button class="theme-btn" data-theme-id="red">Rouge Rubis</button>
+            <button class="theme-btn" data-theme-id="purple">Violet Nocturne</button>
+            <button class="theme-btn" data-theme-id="emerald">Vert Émeraude</button>
+          </div>
+        </div>
+
+        <!-- Module 3 : Raccourcis de Navigation -->
+        <div class="feature-box">
+          <div class="feature-box__header">
+            <span class="feature-box__icon">🎮</span>
+            <div class="feature-box__title-group">
+              <h3>Navigation &amp; Ergonomie Manette / Clavier / Souris</h3>
+              <p>Conçu pour une immersion totale sans friction</p>
+            </div>
+          </div>
+          <div class="feature-shortcuts">
+            <div class="shortcut-item"><kbd>Molette</kbd> <span>Défilement fluide des sections (Bas = Droite, Haut =
+                Gauche)</span></div>
+            <div class="shortcut-item"><kbd>Clic</kbd> <span>Sélection d'élément et inspection directe dans le panneau
+                latéral</span></div>
+            <div class="shortcut-item"><kbd>← / →</kbd> <span>Changement de catégorie horizontale</span></div>
+            <div class="shortcut-item"><kbd>↑ / ↓</kbd> <span>Navigation verticale dans les sous-éléments</span></div>
+            <div class="shortcut-item"><kbd>Entrée / X</kbd> <span>Action principale (Télécharger CV, ouvrir GitHub,
+                etc.)</span></div>
+            <div class="shortcut-item"><kbd>Échap / O</kbd> <span>Fermer le dialogue ou retour</span></div>
+          </div>
+        </div>
+
+        <!-- Module 4 : Métriques & Performance -->
+        <div class="feature-metrics">
+          <div class="metric-pill"><span>60 FPS</span> Synchronisé GPU</div>
+          <div class="metric-pill"><span>Vanilla JS</span> 0 Framework tiers</div>
+          <div class="metric-pill"><span>CSS Blur</span> Filtres natifs</div>
+          <div class="metric-pill"><span>Responsive</span> Mobile &amp; Desktop</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="sidepanel__action-btn" id="btnFeaturesFooterClose">
+          <span class="sidepanel__action-key">○</span>
+          <span>Fermer (Échap / O)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast PS3 en haut à droite -->
+  <div class="ps3-toast" id="ps3Toast" aria-live="polite"></div>
+
+  <!-- ═══════════════ BARRE D'INDICATIONS INFÉRIEURE (HINT BAR) ═══════════════ -->
+  <footer class="bottombar" aria-label="Contrôles et raccourcis">
+    <button class="bottombar__hint bottombar__btn" id="btnValidate" title="Valider l'élément sélectionné (Entrée ou X)">
+      <span class="bottombar__key bottombar__key--x">✕</span>
+      <span class="bottombar__label">Valider</span>
+    </button>
+
+    <button class="bottombar__hint bottombar__btn" id="btnBack" title="Retour (Échap ou O)">
+      <span class="bottombar__key bottombar__key--o">○</span>
+      <span class="bottombar__label">Retour</span>
+    </button>
+
+    <div class="bottombar__hint bottombar__hint--nav">
+      <svg class="bottombar__dpad" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6z" />
+      </svg>
+      <span class="bottombar__label">← ↑ ↓ → · Scroll Molette</span>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>

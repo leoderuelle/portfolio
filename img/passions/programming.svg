@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="100%" height="100%">
+  <defs>
+    <linearGradient id="codeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#040914"/>
+      <stop offset="50%" stop-color="#09182d"/>
+      <stop offset="100%" stop-color="#112948"/>
+    </linearGradient>
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="syntaxPink" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+    <linearGradient id="syntaxGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <filter id="codeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="640" height="360" fill="url(#codeBg)"/>
+
+  <!-- Subtle Matrix / Tech Stream Accents in Background -->
+  <g opacity="0.15" stroke="#38bdf8" stroke-width="1">
+    <line x1="60" y1="0" x2="60" y2="360" stroke-dasharray="4,8"/>
+    <line x1="580" y1="0" x2="580" y2="360" stroke-dasharray="4,8"/>
+    <line x1="0" y1="180" x2="640" y2="180" stroke-dasharray="2,6"/>
+  </g>
+
+  <!-- Modern Code Editor Window (Centerpiece) -->
+  <g transform="translate(100, 42)" filter="url(#codeGlow)">
+    <!-- Window Outer Shell -->
+    <rect x="0" y="0" width="440" height="235" rx="12" fill="#07111e" stroke="url(#neonCyan)" stroke-width="2"/>
+
+    <!-- Window Titlebar -->
+    <path d="M 0 12 C 0 5.37 5.37 0 12 0 L 428 0 C 434.63 0 440 5.37 440 12 L 440 36 L 0 36 Z" fill="#0f1f33"/>
+    
+    <!-- Window Control Dots -->
+    <circle cx="22" cy="18" r="5" fill="#f43f5e"/>
+    <circle cx="38" cy="18" r="5" fill="#fbbf24"/>
+    <circle cx="54" cy="18" r="5" fill="#34d399"/>
+
+    <!-- Tab Pill -->
+    <rect x="80" y="8" width="140" height="28" rx="6" fill="#07111e"/>
+    <text x="96" y="26" font-family="'JetBrains Mono', monospace" font-size="11" fill="#38bdf8">passion.ts</text>
+    <text x="198" y="26" font-family="'JetBrains Mono', monospace" font-size="11" fill="rgba(255,255,255,0.4)">✕</text>
+
+    <!-- Code Line Numbers -->
+    <g font-family="'JetBrains Mono', monospace" font-size="11" fill="rgba(255,255,255,0.25)" text-anchor="end">
+      <text x="32" y="66">1</text>
+      <text x="32" y="90">2</text>
+      <text x="32" y="114">3</text>
+      <text x="32" y="138">4</text>
+      <text x="32" y="162">5</text>
+      <text x="32" y="186">6</text>
+      <text x="32" y="210">7</text>
+    </g>
+
+    <!-- Code Divider Line -->
+    <line x1="44" y1="46" x2="44" y2="225" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+    <!-- Syntax Code Lines -->
+    <g font-family="'JetBrains Mono', monospace" font-size="12">
+      <!-- Line 1: const passion = async () => { -->
+      <text x="56" y="66">
+        <tspan fill="#ec4899">const</tspan>
+        <tspan fill="#38bdf8"> develop</tspan>
+        <tspan fill="rgba(255,255,255,0.7)"> = </tspan>
+        <tspan fill="#fbbf24">async</tspan>
+        <tspan fill="rgba(255,255,255,0.7)"> () =&gt; {</tspan>
+      </text>
+
+      <!-- Line 2:   await exploreTech(); -->
+      <text x="76" y="90">
+        <tspan fill="#ec4899">await</tspan>
+        <tspan fill="#60a5fa"> exploreNewTechnologies</tspan>
+        <tspan fill="rgba(255,255,255,0.7)">();</tspan>
+      </text>
+
+      <!-- Line 3:   return buildProjects({ -->
+      <text x="76" y="114">
+        <tspan fill="#ec4899">return</tspan>
+        <tspan fill="#38bdf8"> buildCleanSoftware</tspan>
+        <tspan fill="rgba(255,255,255,0.7)">({</tspan>
+      </text>
+
+      <!-- Line 4:     curiosity: Infinity, -->
+      <text x="96" y="138">
+        <tspan fill="#a78bfa">curiosity:</tspan>
+        <tspan fill="#fbbf24"> Infinity</tspan>
+        <tspan fill="rgba(255,255,255,0.7)">,</tspan>
+      </text>
+
+      <!-- Line 5:     passion: "clean code & innovation" -->
+      <text x="96" y="162">
+        <tspan fill="#a78bfa">drive:</tspan>
+        <tspan fill="#34d399"> "innovation &amp; code"</tspan>
+      </text>
+
+      <!-- Line 6:   }); -->
+      <text x="76" y="186">
+        <tspan fill="rgba(255,255,255,0.7)">});</tspan>
+      </text>
+
+      <!-- Line 7: }; -->
+      <text x="56" y="210">
+        <tspan fill="rgba(255,255,255,0.7)">};</tspan>
+        <!-- Blinking cursor -->
+        <tspan fill="#38bdf8"> ▋</tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- Floating Tech & Innovation Accents -->
+  <!-- Left Code Bracket Badge -->
+  <g transform="translate(30, 130)" filter="url(#codeGlow)">
+    <circle cx="28" cy="28" r="24" fill="#08182b" stroke="#38bdf8" stroke-width="1.8"/>
+    <text x="28" y="36" font-family="'JetBrains Mono', monospace" font-size="20" font-weight="600" fill="#38bdf8" text-anchor="middle">&lt;/&gt;</text>
+  </g>
+
+  <!-- Right Rocket / Innovation Spark Badge -->
+  <g transform="translate(555, 130)" filter="url(#codeGlow)">
+    <circle cx="28" cy="28" r="24" fill="#08182b" stroke="#818cf8" stroke-width="1.8"/>
+    <!-- Glowing Star/Spark -->
+    <path d="M 28 14 L 31 24 L 41 27 L 31 30 L 28 40 L 25 30 L 15 27 L 25 24 Z" fill="#818cf8"/>
+  </g>
+
+  <!-- Label Bottom -->
+  <g transform="translate(320, 318)" text-anchor="middle">
+    <text font-family="'JetBrains Mono', monospace" font-size="12" font-weight="600" letter-spacing="3" fill="#38bdf8">
+      PROGRAMMATION &amp; NOUVELLES TECHNOLOGIES · CRÉATION &amp; VEILLE
+    </text>
+  </g>
+</svg>
+

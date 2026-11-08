@@ -46,7 +46,7 @@
           sublabel: 'CV_Leo_Deruelle.pdf · Document PDF officiel (884 Ko)',
           icon: 'download',
           action: 'download',
-          file: 'CV_Leo_Deruelle.pdf',
+          file: 'CV.pdf',
           badge: 'MEDIA INFO · DOCUMENT OFFICIEL',
           title: 'Curriculum Vitae',
           subtitle: 'CV_Leo_Deruelle.pdf · Format PDF standard',

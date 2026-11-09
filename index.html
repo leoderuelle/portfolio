@@ -162,8 +162,27 @@
 
     </div>
 
+    <!-- Voile d'arrière-plan pour le tiroir de détails sur mobile -->
+    <div class="sidepanel-backdrop" id="sideBackdrop" aria-hidden="true"></div>
+
     <!-- ═══════════════ PANNEAU LATÉRAL DE DÉTAILS (MEDIA INFO DIRECT) ═══════════════ -->
     <aside class="xmb__sidepanel" id="sidePanel" aria-label="Informations détaillées">
+      
+      <!-- Barre d'en-tête mobile (poignée de tirage & aperçu direct) -->
+      <div class="sidepanel__mobile-bar" id="sideMobileBar">
+        <div class="sidepanel__handle" aria-hidden="true"></div>
+        <div class="sidepanel__mobile-header">
+          <div class="sidepanel__mobile-info">
+            <span class="sidepanel__mobile-badge" id="sideMobileBadge">MEDIA INFO</span>
+            <span class="sidepanel__mobile-title" id="sideMobileTitle">Profil Principal</span>
+          </div>
+          <button class="sidepanel__mobile-toggle" id="btnToggleSideMobile" type="button" aria-label="Afficher ou masquer les détails">
+            <span class="mobile-toggle__icon" id="mobileToggleIcon">▲</span>
+            <span class="mobile-toggle__label" id="mobileToggleLabel">Détails</span>
+          </button>
+        </div>
+      </div>
+
       <!-- Espace supérieur réservé : empêche le contenu de passer sur la date et l'horloge lors du scroll -->
       <div class="sidepanel__top-spacer" aria-hidden="true"></div>
 

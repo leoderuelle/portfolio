@@ -273,23 +273,25 @@
         },
         {
           id: 'skill_soft',
-          label: 'Langues & Soft Skills',
-          sublabel: 'Anglais B2 · Membre BDE · Animateur BAFA',
+          label: 'Soft Skills & Qualités',
+          sublabel: 'Travail d\'équipe · Rigueur · Adaptabilité · Anglais technique',
           icon: 'sliders',
           action: 'info',
-          badge: 'MEDIA INFO · COMPÉTENCES RELATIONNELLES',
-          title: 'Soft Skills & Expériences Humaines',
-          subtitle: 'Sens des responsabilités, communication et travail d\'équipe',
+          badge: 'MEDIA INFO · QUALITÉS PROFESSIONNELLES',
+          title: 'Soft Skills & Qualités Humaines',
+          subtitle: 'Esprit d\'équipe, rigueur, adaptabilité et communication',
           desc: `
-            <p>Au-delà de la technique, mes engagements associatifs et d'animation ont développé des qualités essentielles en entreprise :</p>
+            <p>Au-delà des compétences techniques, je m'appuie sur des qualités humaines indispensables à la réussite de projets collaboratifs :</p>
             <ul>
-              <li><strong>Membre du BDE (Bureau Des Étudiants - IUT de Lens) :</strong> Organisation d'événements pour plusieurs centaines d'étudiants, coordination d'équipes de bénévoles, gestion du planning et communication sur les réseaux sociaux.</li>
-              <li><strong>Animateur BAFA (TernoisCom) :</strong> Rigueur documentaire, encadrement de groupes, écoute active, clarté dans la transmission des informations aux familles et gestion des imprévus.</li>
-              <li><strong>Anglais :</strong> Niveau B2 certifié, permettant de lire sans difficulté la documentation technique, d'écrire du code commenté en anglais et d'échanger au sein d'équipes internationales.</li>
+              <li><strong>Travail d'équipe & Collaboration :</strong> Capacité à coopérer efficacement, partager l'avancement, écouter les retours et avancer en synergie au sein d'un groupe.</li>
+              <li><strong>Rigueur & Sens du détail :</strong> Souci constant de la qualité logicielle, du code propre, de la documentation claire et du respect des conventions.</li>
+              <li><strong>Adaptabilité & Curiosité :</strong> Faculté d'apprentissage rapide face à de nouveaux outils ou environnements, et volonté d'explorer les technologies émergentes.</li>
+              <li><strong>Organisation & Autonomie :</strong> Gestion méthodique des priorités, respect rigoureux des délais et persévérance dans la résolution de problèmes.</li>
+              <li><strong>Anglais technique :</strong> Bonne compréhension pour la lecture fluide de documentations techniques, la rédaction de code commenté en anglais et la communication en équipe.</li>
             </ul>
           `,
-          status: 'ENGAGEMENT ASSOCIATIF ACTIF & DIPLÔME BAFA',
-          tags: ['Anglais B2', 'BDE IUT Lens', 'BAFA', 'Coordination', 'Communication', 'Rigueur']
+          status: 'ESPRIT D\'ÉQUIPE · RIGUEUR · ADAPTABILITÉ · VEILLE ACTIVE',
+          tags: ['Travail d\'équipe', 'Rigueur', 'Adaptabilité', 'Curiosité', 'Organisation', 'Anglais technique']
         },
         {
           id: 'theme_setting',
@@ -679,6 +681,16 @@
   const $sideMediaCard = document.getElementById('sideMediaCard');
   const $sideMediaImg = document.getElementById('sideMediaImg');
 
+  // Éléments du tiroir mobile
+  const $sideBackdrop = document.getElementById('sideBackdrop');
+  const $sideMobileBar = document.getElementById('sideMobileBar');
+  const $sideMobileTitle = document.getElementById('sideMobileTitle');
+  const $sideMobileBadge = document.getElementById('sideMobileBadge');
+  const $btnToggleSideMobile = document.getElementById('btnToggleSideMobile');
+  const $mobileToggleIcon = document.getElementById('mobileToggleIcon');
+  const $mobileToggleLabel = document.getElementById('mobileToggleLabel');
+  let isSidePanelExpanded = false;
+
   // Modale de fonctionnalités
   const $featuresModal = document.getElementById('featuresModal');
   const $btnFeaturesClose = document.getElementById('btnFeaturesClose');
@@ -925,8 +937,8 @@
   /* ── CALCUL DE L'AXE XMB AVEC LE PANNEAU LATÉRAL ──────────── */
   function getTargetAxisX() {
     const width = window.innerWidth;
-    if (width <= 680) {
-      return width / 2;
+    if (width <= 768) {
+      return Math.min(56, width * 0.16);
     }
     const sideWidth = width <= 900 ? 320 : width <= 1200 ? 380 : 490;
     const availableWidth = width - sideWidth;
@@ -934,6 +946,7 @@
   }
 
   function updateCategoryPositions() {
+    const width = window.innerWidth;
     const targetX = getTargetAxisX();
 
     categoryElements.forEach((catEl, idx) => {
@@ -949,8 +962,41 @@
       $categories.style.transform = `translateX(${shiftX}px)`;
 
       // Aligner rigoureusement le centre de l'icône du sous-élément sur l'axe
-      const subLeft = targetX - 36;
+      const subLeft = width <= 768 ? 18 : (targetX - 36);
       $subitems.style.left = `${subLeft}px`;
+    }
+  }
+
+  /* ── GESTION DU TIROIR MOBILE (BOTTOM SHEET) ──────────────── */
+  function openMobileSidePanel() {
+    if (!$sidePanel) return;
+    isSidePanelExpanded = true;
+    $sidePanel.classList.add('is-expanded');
+    if ($mobileToggleIcon) $mobileToggleIcon.textContent = '▼';
+    if ($mobileToggleLabel) $mobileToggleLabel.textContent = 'Fermer';
+    if ($sideBackdrop) $sideBackdrop.classList.add('is-active');
+    const valLabel = $btnValidate ? $btnValidate.querySelector('.bottombar__label') : null;
+    if (valLabel && window.innerWidth <= 768) valLabel.textContent = 'Valider';
+  }
+
+  function closeMobileSidePanel() {
+    if (!$sidePanel) return;
+    isSidePanelExpanded = false;
+    $sidePanel.classList.remove('is-expanded');
+    if ($mobileToggleIcon) $mobileToggleIcon.textContent = '▲';
+    if ($mobileToggleLabel) $mobileToggleLabel.textContent = 'Détails';
+    if ($sideBackdrop) $sideBackdrop.classList.remove('is-active');
+    const valLabel = $btnValidate ? $btnValidate.querySelector('.bottombar__label') : null;
+    if (valLabel && window.innerWidth <= 768) valLabel.textContent = 'Détails';
+  }
+
+  function toggleMobileSidePanel() {
+    if (isSidePanelExpanded) {
+      closeMobileSidePanel();
+      playBackSound();
+    } else {
+      openMobileSidePanel();
+      playSelectSound();
     }
   }
 
@@ -971,6 +1017,10 @@
       if ($sideSubtitle) $sideSubtitle.textContent = item.subtitle || item.sublabel || '';
       if ($sideDesc) $sideDesc.innerHTML = item.desc || '';
       if ($sideStatus) $sideStatus.textContent = item.status || 'EN LIGNE';
+
+      // Mise à jour de l'en-tête mobile (tiroir / Bottom Sheet)
+      if ($sideMobileBadge) $sideMobileBadge.textContent = item.badge || 'MEDIA INFO';
+      if ($sideMobileTitle) $sideMobileTitle.textContent = item.title || item.label;
 
       // Aperçu média visuel (passions & projets)
       if ($sideMediaCard && $sideMediaImg) {
@@ -1084,7 +1134,7 @@
 
       li.appendChild(textWrap);
 
-      // Clic souris : sélectionne l'élément et met à jour le panneau latéral
+      // Clic souris / tap tactile : sélectionne l'élément et met à jour le panneau latéral
       li.addEventListener('click', (e) => {
         e.stopPropagation();
         initAudio();
@@ -1092,9 +1142,17 @@
           currentSubitem = index;
           playNavSound();
           updateSubitemsFocus();
+          // Sur mobile, ouvrir directement le tiroir de détails
+          if (window.innerWidth <= 768) {
+            openMobileSidePanel();
+          }
         } else {
-          // Deuxième clic sur le même élément : déclenche l'action principale
-          triggerSubitemAction(item);
+          // Deuxième clic sur le même élément
+          if (window.innerWidth <= 768 && !isSidePanelExpanded) {
+            openMobileSidePanel();
+          } else {
+            triggerSubitemAction(item);
+          }
         }
       });
 
@@ -1331,7 +1389,14 @@
       case 'o':
       case 'O':
         e.preventDefault();
-        playBackSound();
+        if ($featuresModal && $featuresModal.classList.contains('is-active')) {
+          closeFeaturesModal();
+        } else if (window.innerWidth <= 768 && isSidePanelExpanded) {
+          closeMobileSidePanel();
+          playBackSound();
+        } else {
+          playBackSound();
+        }
         break;
     }
   });
@@ -1354,6 +1419,11 @@
   if ($btnValidate) {
     $btnValidate.addEventListener('click', () => {
       initAudio();
+      if (window.innerWidth <= 768 && !isSidePanelExpanded) {
+        openMobileSidePanel();
+        playSelectSound();
+        return;
+      }
       const currentCatData = CATEGORIES[currentCategory];
       if (currentCatData && currentCatData.items[currentSubitem]) {
         triggerSubitemAction(currentCatData.items[currentSubitem]);
@@ -1366,11 +1436,128 @@
       initAudio();
       if ($featuresModal && $featuresModal.classList.contains('is-active')) {
         closeFeaturesModal();
+      } else if (window.innerWidth <= 768 && isSidePanelExpanded) {
+        closeMobileSidePanel();
+        playBackSound();
       } else {
         playBackSound();
       }
     });
   }
+
+  /* Événements du tiroir mobile (Bottom Sheet) */
+  if ($sideMobileBar) {
+    $sideMobileBar.addEventListener('click', (e) => {
+      e.stopPropagation();
+      initAudio();
+      toggleMobileSidePanel();
+    });
+  }
+
+  if ($btnToggleSideMobile) {
+    $btnToggleSideMobile.addEventListener('click', (e) => {
+      e.stopPropagation();
+      initAudio();
+      toggleMobileSidePanel();
+    });
+  }
+
+  if ($sideBackdrop) {
+    $sideBackdrop.addEventListener('click', () => {
+      closeMobileSidePanel();
+      playBackSound();
+    });
+  }
+
+  /* ── GESTION TACTILE MOBILE (SWIPE & TOUCH) ───────────────── */
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  document.addEventListener('touchstart', (e) => {
+    if ($featuresModal && $featuresModal.classList.contains('is-active')) return;
+    if (isSidePanelExpanded && e.target.closest('#sideScroll')) return;
+
+    if (e.touches && e.touches.length > 0) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if ($featuresModal && $featuresModal.classList.contains('is-active')) return;
+    if (!e.changedTouches || e.changedTouches.length === 0) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+    const dt = Date.now() - touchStartTime;
+
+    // Fermeture par glissement vers le bas sur le haut du tiroir mobile
+    if (isSidePanelExpanded) {
+      if (dy > 55 && Math.abs(dx) < 80 && (e.target.closest('#sideMobileBar') || touchStartY < window.innerHeight * 0.4)) {
+        closeMobileSidePanel();
+        playBackSound();
+      }
+      return;
+    }
+
+    // Gestes tactiles sur l'interface XMB
+    if (dt < 650) {
+      const absX = Math.abs(dx);
+      const absY = Math.abs(dy);
+
+      // Balayage horizontal : changement de catégorie
+      if (absX > 40 && absX > absY * 1.3) {
+        initAudio();
+        if (dx < 0) {
+          // Swipe vers la gauche -> catégorie suivante
+          if (currentCategory < CATEGORIES.length - 1) {
+            currentCategory++;
+            currentSubitem = 0;
+            playNavSound();
+            flashScreen();
+            updateCategoryPositions();
+            renderSubitemsList();
+          }
+        } else {
+          // Swipe vers la droite -> catégorie précédente
+          if (currentCategory > 0) {
+            currentCategory--;
+            currentSubitem = 0;
+            playNavSound();
+            flashScreen();
+            updateCategoryPositions();
+            renderSubitemsList();
+          }
+        }
+      }
+      // Balayage vertical : changement de sous-élément
+      else if (absY > 35 && absY > absX * 1.3) {
+        initAudio();
+        const currentCatData = CATEGORIES[currentCategory];
+        if (currentCatData && currentCatData.items) {
+          if (dy < 0) {
+            // Swipe vers le haut -> élément suivant
+            if (currentSubitem < currentCatData.items.length - 1) {
+              currentSubitem++;
+              playNavSound();
+              updateSubitemsFocus();
+            }
+          } else {
+            // Swipe vers le bas -> élément précédent
+            if (currentSubitem > 0) {
+              currentSubitem--;
+              playNavSound();
+              updateSubitemsFocus();
+            }
+          }
+        }
+      }
+    }
+  }, { passive: true });
 
   /* Événements de la modale de fonctionnalités */
   if ($btnFeaturesClose) {
@@ -1415,6 +1602,9 @@
 
   window.addEventListener('resize', () => {
     updateCategoryPositions();
+    if (window.innerWidth > 768 && isSidePanelExpanded) {
+      closeMobileSidePanel();
+    }
   });
 
   /* ── INITIALISATION ───────────────────────────────────────── */
@@ -1425,8 +1615,17 @@
   updateCategoryPositions();
   renderSubitemsList();
 
+  if (window.innerWidth <= 768) {
+    const valLabel = $btnValidate ? $btnValidate.querySelector('.bottombar__label') : null;
+    if (valLabel) valLabel.textContent = 'Détails';
+  }
+
   if (urlParams.get('modal') === 'features') {
     openFeaturesModal();
+  }
+
+  if (urlParams.get('panel') === 'open' && window.innerWidth <= 768) {
+    openMobileSidePanel();
   }
 
   if (!isNaN(initialScrollParam) && $sideScroll) {
